@@ -22,11 +22,11 @@ document.querySelector(".score").textContent = score;
 
 cards = [
   {
-    "image": "./assets/1.jpeg",
+    "image": "./assets/1.JPEG",
     "name": "1"
   },
   {
-    "image": "./assets/2.jpg",
+    "image": "./assets/2.JPG",
     "name": "2"
   },
   {
@@ -38,11 +38,11 @@ cards = [
     "name": "4"
   },
   {
-    "image": "./assets/5.jpeg",
+    "image": "./assets/5.JPEG",
     "name": "5"
   },
   {
-    "image": "./assets/6.jpeg",
+    "image": "./assets/6.JPEG",
     "name": "6"
   },
   {
@@ -58,11 +58,11 @@ cards = [
     "name": "9"
   },
   {
-    "image": "./assets/1.jpeg",
+    "image": "./assets/1.JPEG",
     "name": "1"
   },
   {
-    "image": "./assets/2.jpg",
+    "image": "./assets/2.JPG",
     "name": "2"
   },
   {
@@ -74,11 +74,11 @@ cards = [
     "name": "4"
   },
   {
-    "image": "./assets/5.jpeg",
+    "image": "./assets/5.JPEG",
     "name": "5"
   },
   {
-    "image": "./assets/6.jpeg",
+    "image": "./assets/6.JPEG",
     "name": "6"
   },
   {
@@ -275,4 +275,5 @@ function playShootingStars() {
 			fall.onfinish = () => star.remove();
 		}, i * 100);
 	}
+
 }
