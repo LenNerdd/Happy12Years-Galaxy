@@ -1,0 +1,38 @@
+[
+    {
+        "image": "../assets/1.jpg",
+        "name": "1"
+    },
+    {
+        "image": "../assets/2.jpg",
+        "name": "2"
+    },
+    {
+        "image": "../assets/3.jpg",
+        "name": "3"
+    },
+    {
+        "image": "../assets/4.jpg",
+        "name": "4"
+    },
+    {
+        "image": "../assets/5.jpg",
+        "name": "5"
+    },
+    {
+        "image": "../assets/6.jpg",
+        "name": "6"
+    },
+    {
+        "image": "../assets/7.jpg",
+        "name": "7"
+    },
+    {
+        "image": "../assets/8.jpg",
+        "name": "8"
+    },
+    {
+        "image": "../assets/9.jpg",
+        "name": "9"
+    }
+]
