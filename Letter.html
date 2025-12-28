@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>♡ Letter ♡</title>
+    <link rel="stylesheet" type="text/css" href="LetterStyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="nebula nebula1"></div>
+    <div class="nebula nebula2"></div>
+    <div class="nebula nebula3"></div>
+    <div class="stars-bg" id="starsContainer"></div>
+
+    <button id="musicToggle"><span class="icon">🔊</span></button>
+    <div onclick="window.location.href='Surprise.html'" class="ring-hint"></div>
+
+    <div class="page-wrapper">
+        <h1>♡ Letters from Len-Nerd ♡</h1>
+        
+        <div class="letter-selection" id="letterSelection">
+            <p class="selection-prompt">Choose a year to read a letter:</p>
+            <div class="dropdown-container">
+                <select id="yearDropdown" class="year-dropdown">
+                    <option value="" disabled selected>Select a year...</option>
+                    <option value="2023">2023 - 10 Years..</option>
+                    <option value="2024">2024 - 11 Years..</option>
+                    <option value="2025">2025 - 12 Years..</option>
+                </select>
+            </div>
+            <button class="open-letter-button" onclick="openSelectedLetter()">Open Letter</button>
+            <div class="actions">
+                <button onclick="window.location.href='Home.html'" class="home-button">Return</button>
+            </div>
+        </div>
+
+        <div class="letter-container" id="letterContainer">
+            <h2 class="letter-year" id="letterYear">♡ December 28, 2023 ♡</h2>
+            
+            <div class="note-container" id="note" onclick="openNote()">
+                <pre id="message">
+                    <div class="letter-content" id="letterContent"></div>
+                </pre>
+            </div>
+
+            <div class="actions">
+                <button onclick="backToSelection()" class="back-button">Choose Another Year</button>
+                <button onclick="window.location.href='Home.html'" class="home-button">Return</button>
+            </div>
+        </div>
+    </div>
+
+    <audio autoplay id="backgroundMusic" preload="auto"></audio>
+
+    <script src="Verify.js"></script>
+    <script src="Letter.js"></script>
+    <script src="MusicPlayer.js"></script>
+    <script>
+        const starsContainer = document.getElementById('starsContainer');
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 3 + 1;
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            starsContainer.appendChild(star);
+        }
+
+        function createShootingStar() {
+            const shootingStar = document.createElement('div');
+            shootingStar.className = 'shooting-star';
+            shootingStar.style.width = Math.random() * 100 + 60 + 'px';
+            shootingStar.style.left = Math.random() * 120 + 20 + '%';
+            shootingStar.style.top = '-100px';
+            const angle = Math.random() * -15 - 40;
+            shootingStar.style.transform = `rotate(${angle}deg)`;
+            starsContainer.appendChild(shootingStar);
+            setTimeout(() => shootingStar.remove(), 3000);
+        }
+
+        setInterval(createShootingStar, 3500);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>♡ Surprise ♡</title>
+    <link rel="stylesheet" type="text/css" href="SurpriseStyle.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="nebula nebula1"></div>
+    <div class="nebula nebula2"></div>
+    <div class="nebula nebula3"></div>
+    <div class="stars-bg" id="starsContainer"></div>
+
+    <button id="musicToggle"><span class="icon">🔊</span></button>
+    <div onclick="window.location.href='Surprise.html'" class="ring-hint"></div>
+
+    <div class="main-container">
+        <h1>♡ Surprise ♡</h1>
+
+        <div class="video-container">
+            <p class="instruction-text" id="instructionText">
+                Let's take a special photo together!<br>
+                Click "Start Camera" to begin
+            </p>
+
+            <div class="video-wrapper">
+                <video id="videoPreview" autoplay muted playsinline></video>
+                <div class="countdown-display" id="countdownDisplay"></div>
+            </div>
+
+            <div class="controls" id="controls">
+                <button id="startCameraBtn" onclick="startCamera()">Start Camera</button>
+                <button id="captureBtn" onclick="capturePhoto()" disabled style="display: none;">Capture</button>
+                <button id="downloadBtn" onclick="downloadVideo()" style="display: none;">Save Video</button>
+                <button id="resetBtn" onclick="resetCamera()" style="display: none;">Reset</button>
+                <button onclick="window.location.href='Home.html'">Return Home</button>
+            </div>
+        </div>
+    </div>
+
+    <audio autoplay id="backgroundMusic" preload="auto"></audio>
+
+    <script src="MusicPlayer.js"></script>
+    <script src="Surprise.js"></script>
+    <script>
+        const starsContainer = document.getElementById('starsContainer');
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 3 + 1;
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            starsContainer.appendChild(star);
+        }
+
+        function createShootingStar() {
+            const shootingStar = document.createElement('div');
+            shootingStar.className = 'shooting-star';
+            shootingStar.style.width = Math.random() * 100 + 60 + 'px';
+            shootingStar.style.left = Math.random() * 120 + 20 + '%';
+            shootingStar.style.top = '-100px';
+            const angle = Math.random() * -15 - 40;
+            shootingStar.style.transform = `rotate(${angle}deg)`;
+            starsContainer.appendChild(shootingStar);
+            setTimeout(() => shootingStar.remove(), 3000);
+        }
+
+        setInterval(createShootingStar, 3500);
+    </script>
+</body>
+
+</html>

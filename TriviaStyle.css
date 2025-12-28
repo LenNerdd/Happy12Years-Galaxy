@@ -1,0 +1,603 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(180deg,
+            #0a0414 0%,
+            #1a0b2e 15%,
+            #2d1b4e 30%,
+            #3d2463 45%,
+            #4a1f5c 60%,
+            #2d1847 75%,
+            #1a0b2e 90%,
+            #0a0414 100%);
+    font-family: 'Quicksand', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(2px 2px at 20% 30%, rgba(255, 182, 255, 0.8), transparent),
+        radial-gradient(2px 2px at 60% 70%, rgba(182, 182, 255, 0.6), transparent),
+        radial-gradient(1px 1px at 50% 50%, rgba(255, 255, 255, 0.9), transparent),
+        radial-gradient(1px 1px at 80% 10%, rgba(255, 200, 255, 0.7), transparent),
+        radial-gradient(2px 2px at 90% 60%, rgba(200, 200, 255, 0.6), transparent),
+        radial-gradient(1px 1px at 33% 85%, rgba(255, 182, 255, 0.5), transparent);
+    background-size: 200% 200%, 300% 300%, 250% 250%, 280% 280%, 220% 220%, 260% 260%;
+    background-position: 0% 0%, 40% 40%, 60% 60%, 20% 80%, 80% 20%, 30% 90%;
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.stars-bg {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.star {
+    position: absolute;
+    background: radial-gradient(circle, rgba(255, 200, 255, 1), rgba(255, 182, 255, 0.6));
+    border-radius: 50%;
+    animation: twinkle 3s ease-in-out infinite;
+    box-shadow: 0 0 4px rgba(255, 182, 255, 0.8);
+}
+
+@keyframes twinkle {
+
+    0%,
+    100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.3);
+    }
+}
+
+.shooting-star {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(255, 182, 255, 1), rgba(182, 182, 255, 0.8), transparent);
+    animation: shootingStar 2.5s cubic-bezier(0.4, 0, 1, 1);
+    transform-origin: left center;
+    box-shadow: 0 0 8px rgba(255, 182, 255, 0.9);
+}
+
+@keyframes shootingStar {
+    0% {
+        transform: translate(0, 0) rotate(-45deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-1000px, 1000px) rotate(-45deg);
+        opacity: 0;
+    }
+}
+
+.nebula {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.nebula1 {
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(255, 105, 180, 0.4) 0%, rgba(138, 43, 226, 0.3) 40%, transparent 70%);
+    top: 10%;
+    right: 10%;
+    animation: float 25s ease-in-out infinite;
+}
+
+.nebula2 {
+    width: 900px;
+    height: 900px;
+    background: radial-gradient(circle, rgba(147, 112, 219, 0.35) 0%, rgba(106, 90, 205, 0.25) 40%, transparent 70%);
+    bottom: 5%;
+    left: 5%;
+    animation: float 30s ease-in-out infinite reverse;
+}
+
+.nebula3 {
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(255, 182, 193, 0.3) 0%, rgba(219, 112, 147, 0.2) 40%, transparent 70%);
+    top: 40%;
+    left: 45%;
+    animation: float 28s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    33% {
+        transform: translate(30px, -30px) rotate(3deg);
+    }
+
+    66% {
+        transform: translate(-20px, 20px) rotate(-3deg);
+    }
+}
+
+#musicToggle {
+    position: fixed;
+    top: 20px;
+    left: 5%;
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 182, 255, 0.4);
+    background: linear-gradient(135deg, rgba(138, 43, 226, 0.25), rgba(255, 105, 180, 0.25));
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+    transition: all 0.3s ease;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#musicToggle .icon {
+    filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(255, 182, 255, 0.8));
+}
+
+#musicToggle:hover {
+    border-color: rgba(255, 182, 255, 0.8);
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(255, 105, 180, 0.5);
+}
+
+#musicToggle:hover .icon {
+    filter: brightness(0) invert(1) drop-shadow(0 0 15px rgba(255, 182, 255, 1));
+}
+
+.ring-hint {
+    position: fixed;
+    top: 20px;
+    right: 5%;
+    font-size: 1.5rem;
+    animation: pulse 2s infinite alternate;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.ring-hint::before {
+    content: '🤍';
+    filter: brightness(0) invert(1) drop-shadow(0 4px 12px rgba(255, 182, 255, 0.8));
+}
+
+.ring-hint:hover {
+    filter: drop-shadow(0 0 25px rgba(255, 182, 255, 1));
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 70px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #fff 0%, #ffb6ff 25%, #dda0dd 50%, #ffb6ff 75%, #fff 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 5px;
+    animation: heartbeat 2.5s ease-in-out infinite, shimmer 8s linear infinite;
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 0 20px rgba(255, 182, 255, 0.6));
+    transition: margin-bottom 0.3s ease, animation 0.3s ease;
+}
+
+h1.quiz-done {
+    margin-bottom: 0px;
+    animation: none;
+}
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    25% {
+        transform: scale(1.08);
+    }
+
+    50% {
+        transform: scale(1);
+    }
+
+    75% {
+        transform: scale(1.04);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 200% 50%;
+    }
+}
+
+h1::before,
+h1::after {
+    content: '✨';
+    position: absolute;
+    font-size: 30px;
+    animation: sparkle 2.5s ease-in-out infinite;
+    filter: drop-shadow(0 0 10px rgba(255, 182, 255, 0.9));
+}
+
+h1::before {
+    left: -50px;
+    top: -10px;
+}
+
+h1::after {
+    right: -50px;
+    top: -10px;
+    animation-delay: 1.25s;
+}
+
+@keyframes sparkle {
+
+    0%,
+    100% {
+        opacity: 0;
+        transform: scale(0) rotate(0deg);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1) rotate(180deg);
+    }
+}
+
+.start-screen {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 20px;
+    animation: fadeInUp 1s ease-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.starting-img {
+    width: 90%;
+    max-width: 450px;
+    height: auto;
+    transition: all 0.3s ease;
+    margin-bottom: 30px;
+    filter: drop-shadow(0 20px 60px rgba(255, 105, 180, 0.5));
+    border-radius: 25px;
+}
+
+.starting-img:hover {
+    transform: scale(1.05) rotate(1deg);
+    filter: drop-shadow(0 25px 80px rgba(255, 182, 255, 0.8));
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.actions button,
+.home-button {
+    width: 380px;
+    padding: 12px 40px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 24px;
+    font-weight: 600;
+    border-radius: 50px;
+    border: 2px solid rgba(255, 182, 255, 0.4);
+    cursor: pointer;
+    background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(255, 105, 180, 0.2));
+    backdrop-filter: blur(12px);
+    color: rgba(255, 230, 255, 0.95);
+    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+    transition: all 0.3s ease;
+    text-shadow: 0 2px 8px rgba(138, 43, 226, 0.4);
+}
+
+.actions button:hover,
+.home-button:hover {
+    filter: drop-shadow(0 0 25px rgba(255, 182, 255, 0.9));
+    border-color: rgba(255, 182, 255, 0.7);
+    transform: translateY(-3px);
+    background: linear-gradient(135deg, rgba(138, 43, 226, 0.3), rgba(255, 105, 180, 0.3));
+}
+
+#display-container {
+    background: linear-gradient(135deg, rgba(138, 43, 226, 0.15), rgba(255, 105, 180, 0.15));
+    backdrop-filter: blur(12px);
+    padding: 3em 2.5em;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 30px;
+    border: 2px solid rgba(255, 182, 255, 0.3);
+    display: none;
+    box-shadow: 0 20px 60px rgba(255, 105, 180, 0.3);
+    z-index: 1;
+    position: relative;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.header {
+    margin-bottom: 2em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1em;
+    border-bottom: 2px solid rgba(255, 182, 255, 0.3);
+}
+
+.number-of-question {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: rgba(255, 230, 255, 0.95);
+    text-shadow: 0 2px 8px rgba(138, 43, 226, 0.6);
+}
+
+.timer-div {
+    background: linear-gradient(145deg, rgba(138, 43, 226, 0.3), rgba(255, 105, 180, 0.3));
+    backdrop-filter: blur(10px);
+    border-radius: 25px;
+    border: 1px solid rgba(255, 182, 255, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.5em 1.2em;
+    box-shadow: 0 4px 10px rgba(255, 105, 180, 0.2);
+}
+
+.timer-div img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1) drop-shadow(0 0 4px rgba(255, 182, 255, 0.6));
+}
+
+.time-left {
+    font-weight: 600;
+    color: rgba(255, 230, 255, 0.95);
+    text-shadow: 0 2px 8px rgba(138, 43, 226, 0.6);
+}
+
+.question {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8em;
+    font-weight: 600;
+    margin-bottom: 1.5em;
+    color: rgba(255, 230, 255, 0.95);
+    text-shadow: 0 2px 8px rgba(138, 43, 226, 0.6);
+    text-align: center;
+}
+
+.option-div {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1em;
+    font-weight: 500;
+    width: 100%;
+    padding: 1.2em;
+    margin: 0.5em 0;
+    text-align: center;
+    outline: none;
+    background: linear-gradient(135deg, rgba(138, 43, 226, 0.15), rgba(255, 105, 180, 0.15));
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 182, 255, 0.3);
+    border-radius: 20px;
+    transition: all 0.3s;
+    cursor: pointer;
+    color: rgba(255, 230, 255, 0.95);
+    text-shadow: 0 2px 4px rgba(138, 43, 226, 0.4);
+}
+
+.option-div:hover:not(:disabled) {
+    background: linear-gradient(135deg, rgba(138, 43, 226, 0.25), rgba(255, 105, 180, 0.25));
+    border-color: rgba(255, 182, 255, 0.6);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+}
+
+.option-div:disabled {
+    cursor: not-allowed;
+}
+
+.correct {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.3), rgba(129, 199, 132, 0.3)) !important;
+    color: #e7f6d5 !important;
+    border-color: #81c784 !important;
+    font-weight: 600;
+}
+
+.incorrect {
+    background: linear-gradient(135deg, rgba(211, 47, 47, 0.3), rgba(229, 115, 115, 0.3)) !important;
+    color: #ffdde0 !important;
+    border-color: #e57373 !important;
+    font-weight: 600;
+}
+
+#next-button {
+    float: right;
+    margin-top: 1.5em;
+    padding: 0.8em 2em;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.2em;
+    font-weight: 600;
+    border-radius: 50px;
+    border: 2px solid rgba(255, 182, 255, 0.4);
+    cursor: pointer;
+    background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(255, 105, 180, 0.2));
+    backdrop-filter: blur(12px);
+    color: rgba(255, 230, 255, 0.95);
+    box-shadow: 0 10px 20px rgba(255, 105, 180, 0.3);
+    transition: all 0.3s ease;
+    text-shadow: 0 2px 8px rgba(138, 43, 226, 0.4);
+}
+
+#next-button:hover {
+    filter: drop-shadow(0 0 25px rgba(255, 182, 255, 0.9));
+    border-color: rgba(255, 182, 255, 0.7);
+    transform: translateY(-3px);
+    background: linear-gradient(135deg, rgba(138, 43, 226, 0.3), rgba(255, 105, 180, 0.3));
+}
+
+.score-container {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 20px;
+    animation: fadeInUp 1s ease-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#user-score {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5em;
+    font-weight: 700;
+    color: rgba(255, 230, 255, 0.95);
+    margin-bottom: 15px;
+    animation: heartbeat 2s ease-in-out infinite;
+    text-shadow: 0 0 20px rgba(255, 182, 255, 0.8);
+}
+
+#user-results {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2em;
+    font-weight: 600;
+    color: rgba(255, 230, 255, 0.95);
+    margin-bottom: 20px;
+    text-shadow: 0 2px 8px rgba(138, 43, 226, 0.6);
+}
+
+.finishing-img {
+    width: 90%;
+    max-width: 450px;
+    height: auto;
+    border-radius: 30px;
+    border: none;
+    margin: 0 0 20px 0;
+    filter: drop-shadow(0 20px 60px rgba(255, 105, 180, 0.5));
+    transition: all 0.3s ease;
+}
+
+.finishing-img:hover {
+    transform: scale(1.05) rotate(1deg);
+    filter: drop-shadow(0 25px 80px rgba(255, 182, 255, 0.8));
+}
+
+.hide {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 50px;
+    }
+
+    h1::before,
+    h1::after {
+        font-size: 20px;
+        left: -30px;
+        right: -30px;
+    }
+
+    .actions button,
+    .home-button {
+        width: 90%;
+        max-width: 350px;
+        font-size: 20px;
+    }
+
+    .starting-img,
+    .finishing-img {
+        max-width: 350px;
+    }
+
+    #display-container {
+        padding: 2em 1.5em;
+    }
+
+    .question {
+        font-size: 1.4em;
+    }
+
+    #user-score {
+        font-size: 2.5em;
+    }
+
+    #user-results {
+        font-size: 1.5em;
+    }
+}

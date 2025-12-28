@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>♡ Connect 4 Game ♡</title>
+    <link rel="stylesheet" type="text/css" href="Connect4Style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="nebula nebula1"></div>
+    <div class="nebula nebula2"></div>
+    <div class="nebula nebula3"></div>
+    <div class="stars-bg" id="starsContainer"></div>
+
+    <button id="musicToggle"><span class="icon">🔊</span></button>
+    <div onclick="window.location.href='Surprise.html'" class="ring-hint"></div>
+
+    <div class="main-container">
+        <h1>♡ Connect 4 Game ♡</h1>
+
+        <!-- Mode Selection Screen -->
+        <div class="mode-selection" id="modeSelection">
+            <p class="mode-prompt">Choose Game Mode:</p>
+            <div class="mode-buttons">
+                <button onclick="startLocalGame()">Play Locally</button>
+                <button onclick="showHostSetup()">Host Online Game</button>
+                <button onclick="showJoinSetup()">Join Online Game</button>
+            </div>
+            <div class="actions">
+                <button onclick="window.location.href='Home.html'">Return</button>
+            </div>
+        </div>
+
+        <!-- Host Setup Screen -->
+        <div class="host-setup hide" id="hostSetup">
+            <p class="mode-prompt">Host Online Game</p>
+            <div class="room-code-display">
+                <p class="room-label">Room Code:</p>
+                <p class="room-code" id="hostRoomCode">------</p>
+                <p class="room-hint">Share this code with your friend!</p>
+            </div>
+            <div class="team-selection">
+                <p class="team-label">Choose Your Team:</p>
+                <div class="team-chips">
+                    <div class="team-chip player1" id="chip1" onclick="selectTeam(1)">
+                        <span>Julie</span>
+                    </div>
+                    <div class="team-chip player2" id="chip2" onclick="selectTeam(2)">
+                        <span>Lenny</span>
+                    </div>
+                </div>
+            </div>
+            <div class="actions">
+                <button onclick="hostGame()">Start Hosting</button>
+                <button onclick="backToModeSelection()">Back</button>
+            </div>
+        </div>
+
+        <!-- Join Setup Screen -->
+        <div class="join-setup hide" id="joinSetup">
+            <p class="mode-prompt">Join Online Game</p>
+            <div class="room-code-input">
+                <p class="room-label">Enter Room Code:</p>
+                <input type="text" id="joinRoomCode" maxlength="6" placeholder="ABCD12" />
+            </div>
+            <div class="actions">
+                <button onclick="joinGame()">Join Game</button>
+                <button onclick="backToModeSelection()">Back</button>
+            </div>
+        </div>
+
+        <!-- Game Container -->
+        <div class="game-container hide" id="gameContainer">
+            <div class="online-status hide" id="onlineStatus">
+                <span class="status-item">Room: <strong id="currentRoomCode"></strong></span>
+                <span class="status-item">Status: <strong id="connectionStatus">Connected</strong></span>
+                <span class="status-item">You: <strong id="yourTeam"></strong></span>
+            </div>
+            <div class="turn-indicator" id="turnIndicator">Julie's Turn</div>
+            <div class="board-wrapper">
+                <div id="columnClicks"></div>
+                <div class="disc-container" id="discContainer"></div>
+                <div class="board" id="board"></div>
+            </div>
+            <div class="actions">
+                <button onclick="resetGame()">Restart</button>
+                <button onclick="backToModeSelection()">Return to Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <audio autoplay id="backgroundMusic" preload="auto"></audio>
+
+    <!-- PeerJS for P2P connection -->
+    <script src="https://cdn.jsdelivr.net/npm/peerjs@1.5.4/dist/peerjs.min.js"></script>
+
+    <script src="MusicPlayer.js"></script>
+    <script src="Connect4.js"></script>
+    <script>
+        const starsContainer = document.getElementById('starsContainer');
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 3 + 1;
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            starsContainer.appendChild(star);
+        }
+
+        function createShootingStar() {
+            const shootingStar = document.createElement('div');
+            shootingStar.className = 'shooting-star';
+            shootingStar.style.width = Math.random() * 100 + 60 + 'px';
+            shootingStar.style.left = Math.random() * 120 + 20 + '%';
+            shootingStar.style.top = '-100px';
+            const angle = Math.random() * -15 - 40;
+            shootingStar.style.transform = `rotate(${angle}deg)`;
+            starsContainer.appendChild(shootingStar);
+            setTimeout(() => shootingStar.remove(), 3000);
+        }
+
+        setInterval(createShootingStar, 3500);
+    </script>
+</body>
+
+</html>
